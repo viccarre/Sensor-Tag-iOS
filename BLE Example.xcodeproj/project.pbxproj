@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5BB869411BF44CCB006F8DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB869401BF44CCB006F8DBE /* AppDelegate.swift */; };
+		5BB869431BF44CCB006F8DBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB869421BF44CCB006F8DBE /* ViewController.swift */; };
+		5BB869461BF44CCB006F8DBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB869441BF44CCB006F8DBE /* Main.storyboard */; };
+		5BB869481BF44CCB006F8DBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB869471BF44CCB006F8DBE /* Assets.xcassets */; };
+		5BB8694B1BF44CCB006F8DBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB869491BF44CCB006F8DBE /* LaunchScreen.storyboard */; };
+		5BB869561BF44CCB006F8DBE /* BLE_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB869551BF44CCB006F8DBE /* BLE_ExampleTests.swift */; };
+		5BB869611BF44CCB006F8DBE /* BLE_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB869601BF44CCB006F8DBE /* BLE_ExampleUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BB869521BF44CCB006F8DBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BB869351BF44CCB006F8DBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BB8693C1BF44CCB006F8DBE;
+			remoteInfo = "BLE Example";
+		};
+		5BB8695D1BF44CCB006F8DBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BB869351BF44CCB006F8DBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BB8693C1BF44CCB006F8DBE;
+			remoteInfo = "BLE Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5BB8693D1BF44CCB006F8DBE /* BLE Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BLE Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB869401BF44CCB006F8DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5BB869421BF44CCB006F8DBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5BB869451BF44CCB006F8DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5BB869471BF44CCB006F8DBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BB8694A1BF44CCB006F8DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5BB8694C1BF44CCB006F8DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB869511BF44CCB006F8DBE /* BLE ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BLE ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB869551BF44CCB006F8DBE /* BLE_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_ExampleTests.swift; sourceTree = "<group>"; };
+		5BB869571BF44CCB006F8DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB8695C1BF44CCB006F8DBE /* BLE ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BLE ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB869601BF44CCB006F8DBE /* BLE_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_ExampleUITests.swift; sourceTree = "<group>"; };
+		5BB869621BF44CCB006F8DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5BB8693A1BF44CCB006F8DBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB8694E1BF44CCB006F8DBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB869591BF44CCB006F8DBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5BB869341BF44CCB006F8DBE = {
+			isa = PBXGroup;
+			children = (
+				5BB8693F1BF44CCB006F8DBE /* BLE Example */,
+				5BB869541BF44CCB006F8DBE /* BLE ExampleTests */,
+				5BB8695F1BF44CCB006F8DBE /* BLE ExampleUITests */,
+				5BB8693E1BF44CCB006F8DBE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5BB8693E1BF44CCB006F8DBE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BB8693D1BF44CCB006F8DBE /* BLE Example.app */,
+				5BB869511BF44CCB006F8DBE /* BLE ExampleTests.xctest */,
+				5BB8695C1BF44CCB006F8DBE /* BLE ExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BB8693F1BF44CCB006F8DBE /* BLE Example */ = {
+			isa = PBXGroup;
+			children = (
+				5BB869401BF44CCB006F8DBE /* AppDelegate.swift */,
+				5BB869421BF44CCB006F8DBE /* ViewController.swift */,
+				5BB869441BF44CCB006F8DBE /* Main.storyboard */,
+				5BB869471BF44CCB006F8DBE /* Assets.xcassets */,
+				5BB869491BF44CCB006F8DBE /* LaunchScreen.storyboard */,
+				5BB8694C1BF44CCB006F8DBE /* Info.plist */,
+			);
+			path = "BLE Example";
+			sourceTree = "<group>";
+		};
+		5BB869541BF44CCB006F8DBE /* BLE ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				5BB869551BF44CCB006F8DBE /* BLE_ExampleTests.swift */,
+				5BB869571BF44CCB006F8DBE /* Info.plist */,
+			);
+			path = "BLE ExampleTests";
+			sourceTree = "<group>";
+		};
+		5BB8695F1BF44CCB006F8DBE /* BLE ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5BB869601BF44CCB006F8DBE /* BLE_ExampleUITests.swift */,
+				5BB869621BF44CCB006F8DBE /* Info.plist */,
+			);
+			path = "BLE ExampleUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5BB8693C1BF44CCB006F8DBE /* BLE Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BB869651BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE Example" */;
+			buildPhases = (
+				5BB869391BF44CCB006F8DBE /* Sources */,
+				5BB8693A1BF44CCB006F8DBE /* Frameworks */,
+				5BB8693B1BF44CCB006F8DBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BLE Example";
+			productName = "BLE Example";
+			productReference = 5BB8693D1BF44CCB006F8DBE /* BLE Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5BB869501BF44CCB006F8DBE /* BLE ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BB869681BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleTests" */;
+			buildPhases = (
+				5BB8694D1BF44CCB006F8DBE /* Sources */,
+				5BB8694E1BF44CCB006F8DBE /* Frameworks */,
+				5BB8694F1BF44CCB006F8DBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BB869531BF44CCB006F8DBE /* PBXTargetDependency */,
+			);
+			name = "BLE ExampleTests";
+			productName = "BLE ExampleTests";
+			productReference = 5BB869511BF44CCB006F8DBE /* BLE ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5BB8695B1BF44CCB006F8DBE /* BLE ExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BB8696B1BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleUITests" */;
+			buildPhases = (
+				5BB869581BF44CCB006F8DBE /* Sources */,
+				5BB869591BF44CCB006F8DBE /* Frameworks */,
+				5BB8695A1BF44CCB006F8DBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BB8695E1BF44CCB006F8DBE /* PBXTargetDependency */,
+			);
+			name = "BLE ExampleUITests";
+			productName = "BLE ExampleUITests";
+			productReference = 5BB8695C1BF44CCB006F8DBE /* BLE ExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5BB869351BF44CCB006F8DBE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Victor Carreño";
+				TargetAttributes = {
+					5BB8693C1BF44CCB006F8DBE = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					5BB869501BF44CCB006F8DBE = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 5BB8693C1BF44CCB006F8DBE;
+					};
+					5BB8695B1BF44CCB006F8DBE = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 5BB8693C1BF44CCB006F8DBE;
+					};
+				};
+			};
+			buildConfigurationList = 5BB869381BF44CCB006F8DBE /* Build configuration list for PBXProject "BLE Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5BB869341BF44CCB006F8DBE;
+			productRefGroup = 5BB8693E1BF44CCB006F8DBE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5BB8693C1BF44CCB006F8DBE /* BLE Example */,
+				5BB869501BF44CCB006F8DBE /* BLE ExampleTests */,
+				5BB8695B1BF44CCB006F8DBE /* BLE ExampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5BB8693B1BF44CCB006F8DBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB8694B1BF44CCB006F8DBE /* LaunchScreen.storyboard in Resources */,
+				5BB869481BF44CCB006F8DBE /* Assets.xcassets in Resources */,
+				5BB869461BF44CCB006F8DBE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB8694F1BF44CCB006F8DBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB8695A1BF44CCB006F8DBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BB869391BF44CCB006F8DBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB869431BF44CCB006F8DBE /* ViewController.swift in Sources */,
+				5BB869411BF44CCB006F8DBE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB8694D1BF44CCB006F8DBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB869561BF44CCB006F8DBE /* BLE_ExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB869581BF44CCB006F8DBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB869611BF44CCB006F8DBE /* BLE_ExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BB869531BF44CCB006F8DBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BB8693C1BF44CCB006F8DBE /* BLE Example */;
+			targetProxy = 5BB869521BF44CCB006F8DBE /* PBXContainerItemProxy */;
+		};
+		5BB8695E1BF44CCB006F8DBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BB8693C1BF44CCB006F8DBE /* BLE Example */;
+			targetProxy = 5BB8695D1BF44CCB006F8DBE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5BB869441BF44CCB006F8DBE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BB869451BF44CCB006F8DBE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5BB869491BF44CCB006F8DBE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BB8694A1BF44CCB006F8DBE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5BB869631BF44CCB006F8DBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5BB869641BF44CCB006F8DBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5BB869661BF44CCB006F8DBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "BLE Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5BB869671BF44CCB006F8DBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "BLE Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5BB869691BF44CCB006F8DBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "BLE ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE Example.app/BLE Example";
+			};
+			name = Debug;
+		};
+		5BB8696A1BF44CCB006F8DBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "BLE ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE Example.app/BLE Example";
+			};
+			name = Release;
+		};
+		5BB8696C1BF44CCB006F8DBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "BLE ExampleUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "BLE Example";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5BB8696D1BF44CCB006F8DBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "BLE ExampleUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "BLE Example";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5BB869381BF44CCB006F8DBE /* Build configuration list for PBXProject "BLE Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB869631BF44CCB006F8DBE /* Debug */,
+				5BB869641BF44CCB006F8DBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BB869651BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB869661BF44CCB006F8DBE /* Debug */,
+				5BB869671BF44CCB006F8DBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BB869681BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB869691BF44CCB006F8DBE /* Debug */,
+				5BB8696A1BF44CCB006F8DBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BB8696B1BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB8696C1BF44CCB006F8DBE /* Debug */,
+				5BB8696D1BF44CCB006F8DBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5BB869351BF44CCB006F8DBE /* Project object */;
+}
