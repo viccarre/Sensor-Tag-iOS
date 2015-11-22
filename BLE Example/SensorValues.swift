@@ -1,20 +1,21 @@
 //
-//  ViewController.swift
+//  SensorValues.swift
 //  BLE Example
 //
-//  Created by Victor Carreño on 11/11/15.
+//  Created by Victor Carreño on 11/22/15.
 //  Copyright © 2015 Victor Carreño. All rights reserved.
 //
 
 import UIKit
 import CoreBluetooth
 
-class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate{
+class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
 
     var titleLabel : UILabel!
     var statusLabel : UILabel!
-    var tempLabel : UILabel!
-    var humidityLabel : UILabel!
+
+    var ambientTemperatureLabel: UILabel!
+    var humidityLabel: UILabel!
 
     // BLE
     var centralManager : CBCentralManager!
@@ -31,49 +32,89 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     let HumidityDataUUID        = CBUUID(string: "F000AA21-0451-4000-B000-000000000000")
     let HumidityConfigUUID      = CBUUID(string: "F000AA22-0451-4000-B000-000000000000")
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //View Controller setup
-
-        // Set up title label
-        titleLabel = UILabel()
-        titleLabel.text = "RedTag 📶 "
-        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
-        titleLabel.sizeToFit()
-
-        titleLabel.center = CGPoint(x: self.view.frame.midX, y: titleLabel.bounds.midY+28)
-        self.view.addSubview(titleLabel)
-
-        // Set up status label
-        statusLabel = UILabel()
-        statusLabel.textAlignment = NSTextAlignment.Center
-        statusLabel.text = "Loading..."
-        statusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
-        statusLabel.sizeToFit()
-        statusLabel.frame = CGRect(x: self.view.frame.origin.x, y: titleLabel.frame.maxY, width: self.view.frame.width, height: statusLabel.bounds.height)
-        self.view.addSubview(statusLabel)
-
-        // Set up temperature label
-        tempLabel = UILabel()
-        tempLabel.text = "00.00"
-        tempLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 72)
-        tempLabel.sizeToFit()
-        tempLabel.center = self.view.center
-        self.view.addSubview(tempLabel)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 217.0/255.0, green: 30.0/255.0, blue: 24.0/255.0, alpha: 1.0)
 
 
-        //Initialize central manager on load
-        centralManager = CBCentralManager(delegate: self, queue: nil)
 
+        if let navigationBar = self.navigationController?.navigationBar {
+
+
+            // Set up title label
+            titleLabel = UILabel()
+            titleLabel.text = "RedTag 📶 "
+            titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+            titleLabel.sizeToFit()
+            titleLabel.center = CGPoint(x: self.view.frame.midX, y: titleLabel.bounds.midY)
+            titleLabel.textColor = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+            navigationBar.addSubview(titleLabel)
+
+            // Set up status label
+            statusLabel = UILabel()
+            statusLabel.textAlignment = NSTextAlignment.Center
+            statusLabel.text = "Loading..."
+            statusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+            statusLabel.sizeToFit()
+            statusLabel.textColor = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+            statusLabel.frame = CGRect(x: self.view.frame.origin.x, y: titleLabel.frame.maxY, width: self.view.frame.width, height: statusLabel.bounds.height)
+            navigationBar.addSubview(statusLabel)
+
+            //Initialize central manager on load
+            centralManager = CBCentralManager(delegate: self, queue: nil)
+
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // MARK: - Table view data source
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell")!
+
+        if(indexPath.row == 0){
+
+            ambientTemperatureLabel = UILabel()
+            ambientTemperatureLabel.text = "00.00"
+            ambientTemperatureLabel.sizeToFit()
+
+            ambientTemperatureLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
+            cell.addSubview(ambientTemperatureLabel)
+            cell.textLabel?.text = "IR Temperature Sensor"
+
+        }
+
+        if(indexPath.row == 1){
+
+            humidityLabel = UILabel()
+            humidityLabel.text = "00.00"
+            humidityLabel.sizeToFit()
+
+            humidityLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
+            cell.addSubview(humidityLabel)
+            cell.textLabel?.text = "Humidity Sensor"
+            
+        }
+
+
+        return cell
+    }
+
 
     //Check status of BLE Hardware
     func centralManagerDidUpdateState(central: CBCentralManager) {
@@ -201,14 +242,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             /*
             m_tmpAmb = (double)((qint16)rawT)/128.0;
             */
+
             let ambientTemperature = Double(dataArray[1])/128
 
             // Display on the temp label
-            self.tempLabel.text = NSString(format: "%.2f", ambientTemperature) as String
+            ambientTemperatureLabel.text = NSString(format: "%.2f", ambientTemperature) as String
         }
 
         if characteristic.UUID == HumidityDataUUID{
-            print("Humidity")
             let dataBytes = characteristic.value
             let dataLenght = dataBytes!.length
             var dataArray = [Int16](count: dataLenght, repeatedValue: 0)
@@ -220,13 +261,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             */
 
             let ambientHumidity = -6.0 + 125.0/65536 * Double(dataArray[1])
+            // Display on the temp label
+            humidityLabel.text = NSString(format: "%.2f", ambientHumidity) as String
 
-            print(ambientHumidity)
         }
     }
-
-
-
+    
+    
+    
     // If disconnected, start searching again
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         self.statusLabel.text = "Disconnected"
@@ -234,4 +276,3 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
 
 }
-
