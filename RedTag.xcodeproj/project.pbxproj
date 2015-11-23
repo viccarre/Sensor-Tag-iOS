@@ -36,17 +36,17 @@
 
 /* Begin PBXFileReference section */
 		5B56B1851C0276D400C3460C /* SensorValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorValues.swift; sourceTree = "<group>"; };
-		5BB8693D1BF44CCB006F8DBE /* BLE Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BLE Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB8693D1BF44CCB006F8DBE /* RedTag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedTag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB869401BF44CCB006F8DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BB869421BF44CCB006F8DBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5BB869451BF44CCB006F8DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5BB869471BF44CCB006F8DBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BB8694A1BF44CCB006F8DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BB8694C1BF44CCB006F8DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5BB869511BF44CCB006F8DBE /* BLE ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BLE ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB869511BF44CCB006F8DBE /* RedTag.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedTag.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB869551BF44CCB006F8DBE /* BLE_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_ExampleTests.swift; sourceTree = "<group>"; };
 		5BB869571BF44CCB006F8DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5BB8695C1BF44CCB006F8DBE /* BLE ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BLE ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB8695C1BF44CCB006F8DBE /* RedTag.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedTag.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB869601BF44CCB006F8DBE /* BLE_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_ExampleUITests.swift; sourceTree = "<group>"; };
 		5BB869621BF44CCB006F8DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,9 +89,9 @@
 		5BB8693E1BF44CCB006F8DBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5BB8693D1BF44CCB006F8DBE /* BLE Example.app */,
-				5BB869511BF44CCB006F8DBE /* BLE ExampleTests.xctest */,
-				5BB8695C1BF44CCB006F8DBE /* BLE ExampleUITests.xctest */,
+				5BB8693D1BF44CCB006F8DBE /* RedTag.app */,
+				5BB869511BF44CCB006F8DBE /* RedTag.xctest */,
+				5BB8695C1BF44CCB006F8DBE /* RedTag.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5BB8693C1BF44CCB006F8DBE /* BLE Example */ = {
+		5BB8693C1BF44CCB006F8DBE /* RedTag */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5BB869651BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE Example" */;
+			buildConfigurationList = 5BB869651BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "RedTag" */;
 			buildPhases = (
 				5BB869391BF44CCB006F8DBE /* Sources */,
 				5BB8693A1BF44CCB006F8DBE /* Frameworks */,
@@ -143,14 +143,14 @@
 			);
 			dependencies = (
 			);
-			name = "BLE Example";
+			name = RedTag;
 			productName = "BLE Example";
-			productReference = 5BB8693D1BF44CCB006F8DBE /* BLE Example.app */;
+			productReference = 5BB8693D1BF44CCB006F8DBE /* RedTag.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5BB869501BF44CCB006F8DBE /* BLE ExampleTests */ = {
+		5BB869501BF44CCB006F8DBE /* RedTagTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5BB869681BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleTests" */;
+			buildConfigurationList = 5BB869681BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "RedTagTests" */;
 			buildPhases = (
 				5BB8694D1BF44CCB006F8DBE /* Sources */,
 				5BB8694E1BF44CCB006F8DBE /* Frameworks */,
@@ -161,14 +161,14 @@
 			dependencies = (
 				5BB869531BF44CCB006F8DBE /* PBXTargetDependency */,
 			);
-			name = "BLE ExampleTests";
+			name = RedTagTests;
 			productName = "BLE ExampleTests";
-			productReference = 5BB869511BF44CCB006F8DBE /* BLE ExampleTests.xctest */;
+			productReference = 5BB869511BF44CCB006F8DBE /* RedTag.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5BB8695B1BF44CCB006F8DBE /* BLE ExampleUITests */ = {
+		5BB8695B1BF44CCB006F8DBE /* RedTagUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5BB8696B1BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleUITests" */;
+			buildConfigurationList = 5BB8696B1BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "RedTagUITests" */;
 			buildPhases = (
 				5BB869581BF44CCB006F8DBE /* Sources */,
 				5BB869591BF44CCB006F8DBE /* Frameworks */,
@@ -179,9 +179,9 @@
 			dependencies = (
 				5BB8695E1BF44CCB006F8DBE /* PBXTargetDependency */,
 			);
-			name = "BLE ExampleUITests";
+			name = RedTagUITests;
 			productName = "BLE ExampleUITests";
-			productReference = 5BB8695C1BF44CCB006F8DBE /* BLE ExampleUITests.xctest */;
+			productReference = 5BB8695C1BF44CCB006F8DBE /* RedTag.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -207,7 +207,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5BB869381BF44CCB006F8DBE /* Build configuration list for PBXProject "BLE Example" */;
+			buildConfigurationList = 5BB869381BF44CCB006F8DBE /* Build configuration list for PBXProject "RedTag" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -220,9 +220,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5BB8693C1BF44CCB006F8DBE /* BLE Example */,
-				5BB869501BF44CCB006F8DBE /* BLE ExampleTests */,
-				5BB8695B1BF44CCB006F8DBE /* BLE ExampleUITests */,
+				5BB8693C1BF44CCB006F8DBE /* RedTag */,
+				5BB869501BF44CCB006F8DBE /* RedTagTests */,
+				5BB8695B1BF44CCB006F8DBE /* RedTagUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,12 +286,12 @@
 /* Begin PBXTargetDependency section */
 		5BB869531BF44CCB006F8DBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5BB8693C1BF44CCB006F8DBE /* BLE Example */;
+			target = 5BB8693C1BF44CCB006F8DBE /* RedTag */;
 			targetProxy = 5BB869521BF44CCB006F8DBE /* PBXContainerItemProxy */;
 		};
 		5BB8695E1BF44CCB006F8DBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5BB8693C1BF44CCB006F8DBE /* BLE Example */;
+			target = 5BB8693C1BF44CCB006F8DBE /* RedTag */;
 			targetProxy = 5BB8695D1BF44CCB006F8DBE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -404,7 +404,7 @@
 				INFOPLIST_FILE = "BLE Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RedTag;
 			};
 			name = Debug;
 		};
@@ -415,7 +415,7 @@
 				INFOPLIST_FILE = "BLE Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RedTag;
 			};
 			name = Release;
 		};
@@ -426,8 +426,8 @@
 				INFOPLIST_FILE = "BLE ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE Example.app/BLE Example";
+				PRODUCT_NAME = RedTag;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RedTag.app/RedTag";
 			};
 			name = Debug;
 		};
@@ -438,8 +438,8 @@
 				INFOPLIST_FILE = "BLE ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE Example.app/BLE Example";
+				PRODUCT_NAME = RedTag;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RedTag.app/RedTag";
 			};
 			name = Release;
 		};
@@ -449,7 +449,7 @@
 				INFOPLIST_FILE = "BLE ExampleUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RedTag;
 				TEST_TARGET_NAME = "BLE Example";
 				USES_XCTRUNNER = YES;
 			};
@@ -461,7 +461,7 @@
 				INFOPLIST_FILE = "BLE ExampleUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "viccarre.BLEex.BLE-ExampleUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RedTag;
 				TEST_TARGET_NAME = "BLE Example";
 				USES_XCTRUNNER = YES;
 			};
@@ -470,7 +470,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5BB869381BF44CCB006F8DBE /* Build configuration list for PBXProject "BLE Example" */ = {
+		5BB869381BF44CCB006F8DBE /* Build configuration list for PBXProject "RedTag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5BB869631BF44CCB006F8DBE /* Debug */,
@@ -479,7 +479,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5BB869651BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE Example" */ = {
+		5BB869651BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "RedTag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5BB869661BF44CCB006F8DBE /* Debug */,
@@ -488,7 +488,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5BB869681BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleTests" */ = {
+		5BB869681BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "RedTagTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5BB869691BF44CCB006F8DBE /* Debug */,
@@ -497,7 +497,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5BB8696B1BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "BLE ExampleUITests" */ = {
+		5BB8696B1BF44CCB006F8DBE /* Build configuration list for PBXNativeTarget "RedTagUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5BB8696C1BF44CCB006F8DBE /* Debug */,

@@ -16,28 +16,36 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
     var ambientTemperatureLabel: UILabel!
     var humidityLabel: UILabel!
+    var temperatureLabel: UILabel!
+    var xAxisLabel: UILabel!
+    var yAxisLabel: UILabel!
+    var zAxisLabel: UILabel!
 
     // BLE
     var centralManager : CBCentralManager!
     var sensorTagPeripheral : CBPeripheral!
 
     // IR Temp UUIDs
-    let IRTemperatureServiceUUID = CBUUID(string: "F000AA00-0451-4000-B000-000000000000")
-    let IRTemperatureDataUUID   = CBUUID(string: "F000AA01-0451-4000-B000-000000000000")
-    let IRTemperatureConfigUUID = CBUUID(string: "F000AA02-0451-4000-B000-000000000000")
+    let IRTemperatureServiceUUID    = CBUUID(string: "F000AA00-0451-4000-B000-000000000000")
+    let IRTemperatureDataUUID       = CBUUID(string: "F000AA01-0451-4000-B000-000000000000")
+    let IRTemperatureConfigUUID     = CBUUID(string: "F000AA02-0451-4000-B000-000000000000")
 
 
     //Humidity UUIDs
-    let HumidityServiceUUID      = CBUUID(string: "F000AA20-0451-4000-B000-000000000000")
-    let HumidityDataUUID        = CBUUID(string: "F000AA21-0451-4000-B000-000000000000")
-    let HumidityConfigUUID      = CBUUID(string: "F000AA22-0451-4000-B000-000000000000")
+    let HumidityServiceUUID         = CBUUID(string: "F000AA20-0451-4000-B000-000000000000")
+    let HumidityDataUUID            = CBUUID(string: "F000AA21-0451-4000-B000-000000000000")
+    let HumidityConfigUUID          = CBUUID(string: "F000AA22-0451-4000-B000-000000000000")
+
+    //Accelerometer UUIDs
+    let MovementServiceUUID         = CBUUID(string: "F000AA80-0451-4000-B000-000000000000")
+    let MovementDataUUID            = CBUUID(string: "F000AA81-0451-4000-B000-000000000000")
+    let MovementConfigUUID          = CBUUID(string: "F000AA82-0451-4000-B000-000000000000")
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor(red: 217.0/255.0, green: 30.0/255.0, blue: 24.0/255.0, alpha: 1.0)
-
-
 
         if let navigationBar = self.navigationController?.navigationBar {
 
@@ -79,7 +87,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
 
 
@@ -89,14 +97,14 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
         if(indexPath.row == 0){
 
-            ambientTemperatureLabel = UILabel()
-            ambientTemperatureLabel.text = "00.00"
-            ambientTemperatureLabel.sizeToFit()
+            temperatureLabel = UILabel()
+            temperatureLabel.text = "00.00"
+            temperatureLabel.sizeToFit()
 
-            ambientTemperatureLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
-            cell.addSubview(ambientTemperatureLabel)
-            cell.textLabel?.text = "IR Temperature Sensor"
-
+            temperatureLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
+            cell.addSubview(temperatureLabel)
+            cell.textLabel?.text = "Temperature Sensor"
+            
         }
 
         if(indexPath.row == 1){
@@ -108,6 +116,43 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             humidityLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
             cell.addSubview(humidityLabel)
             cell.textLabel?.text = "Humidity Sensor"
+            
+        }
+
+        if(indexPath.row == 2){
+
+            ambientTemperatureLabel = UILabel()
+            ambientTemperatureLabel.text = "00.00"
+            ambientTemperatureLabel.sizeToFit()
+
+            ambientTemperatureLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
+            cell.addSubview(ambientTemperatureLabel)
+            cell.textLabel?.text = "IR Temperature Sensor"
+
+        }
+
+        if(indexPath.row == 3){
+
+            xAxisLabel = UILabel()
+            xAxisLabel.text = "00000"
+            xAxisLabel.sizeToFit()
+            xAxisLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
+            cell.addSubview(xAxisLabel)
+
+            yAxisLabel = UILabel()
+            yAxisLabel.text = "00000"
+            yAxisLabel.sizeToFit()
+            yAxisLabel.center = CGPoint(x: self.view.frame.width-90, y: cell.frame.height/2)
+            cell.addSubview(yAxisLabel)
+
+
+            zAxisLabel = UILabel()
+            zAxisLabel.text = "00000"
+            zAxisLabel.sizeToFit()
+            zAxisLabel.center = CGPoint(x: self.view.frame.width-150, y: cell.frame.height/2)
+            cell.addSubview(zAxisLabel)
+
+            cell.textLabel?.text = "Accelerometer"
             
         }
 
@@ -180,7 +225,11 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
                 peripheral.discoverCharacteristics(nil, forService: thisService)
             }
 
-            print(thisService.UUID)
+            if service.UUID == MovementServiceUUID{
+                peripheral.discoverCharacteristics(nil, forService: thisService)
+            }
+
+            //print(thisService.UUID)
         }
     }
 
@@ -193,33 +242,54 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
         //0x01 data byte to enable sensor
         var enableValue = 1
         let enableBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
-
-        print(service)
+        print(enableBytes)
         //check the UUID of each characteristic to find config and data characteristics
         for characteristics in service.characteristics!{
             let thisCharacteristic = characteristics as CBCharacteristic
-            print(thisCharacteristic)
+            //print(thisCharacteristic)
             //check for data characteristic
             if thisCharacteristic.UUID == IRTemperatureDataUUID{
                 //Enable Sensor Notification
                 self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+                //print(thisCharacteristic)
             }
 
             //Check for config characteristic
             if thisCharacteristic.UUID == IRTemperatureConfigUUID{
                 //Enable Sensor
                 self.sensorTagPeripheral.writeValue(enableBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+                //print(thisCharacteristic)
             }
 
             //Check for data characteristic
             if thisCharacteristic.UUID == HumidityDataUUID{
                 self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+                //print(thisCharacteristic)
             }
-
             if thisCharacteristic.UUID == HumidityConfigUUID{
                 //Enable Humidity Sensor
                 self.sensorTagPeripheral.writeValue(enableBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+                //print(thisCharacteristic)
             }
+
+            //Check Accelerometer characteristic
+            if thisCharacteristic.UUID == MovementDataUUID{
+                self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+                //print(thisCharacteristic)
+            }
+            if thisCharacteristic.UUID == MovementConfigUUID{
+
+                //Enble Accelerometer
+                var enableMove = 38
+                let enableBytesMove = NSData(bytes: &enableMove, length: sizeof(UInt16))
+                print(enableBytesMove)
+
+                self.sensorTagPeripheral.writeValue(enableBytesMove, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+                print(sensorTagPeripheral)
+
+            }
+
+
         }
 
     }
@@ -229,7 +299,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
         self.statusLabel.text = "Connected 😉"
 
-        //print(characteristic)
+        //print(characteristic.UUID)
 
         if characteristic.UUID == IRTemperatureDataUUID {
             // Convert NSData to array of signed 16 bit values
@@ -252,8 +322,8 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
         if characteristic.UUID == HumidityDataUUID{
             let dataBytes = characteristic.value
             let dataLenght = dataBytes!.length
-            var dataArray = [Int16](count: dataLenght, repeatedValue: 0)
-            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(Int16))
+            var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
 
             /*
             //-- calculate relative humidity [%RH] --
@@ -264,9 +334,27 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             // Display on the temp label
             humidityLabel.text = NSString(format: "%.2f", ambientHumidity) as String
 
+            /*
+            //-- calculate temperature [deg C] --
+            v = -46.85 + 175.72/65536 *(double)(qint16)rawT;
+            */
+            let ambientTemperature = -46.85 + 175.72/65536.0 * Double(dataArray[0])
+            temperatureLabel.text = NSString(format: "%.2f", ambientTemperature) as String
+        }
+
+        if characteristic.UUID == MovementDataUUID{
+
+            let dataBytes = characteristic.value
+            let dataLenght = dataBytes!.length
+            var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
+
+            xAxisLabel.text = NSString(format: "%.0f", Double(dataArray[0])) as String
+            yAxisLabel.text = NSString(format: "%.0f", Double(dataArray[1])) as String
+            zAxisLabel.text = NSString(format: "%.0f", Double(dataArray[3])) as String
+
         }
     }
-    
     
     
     // If disconnected, start searching again

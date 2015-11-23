@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5BB8693C1BF44CCB006F8DBE"
-               BuildableName = "BLE Example.app"
-               BlueprintName = "BLE Example"
-               ReferencedContainer = "container:BLE Example.xcodeproj">
+               BuildableName = "RedTag.app"
+               BlueprintName = "RedTag"
+               ReferencedContainer = "container:RedTag.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5BB869501BF44CCB006F8DBE"
-               BuildableName = "BLE ExampleTests.xctest"
-               BlueprintName = "BLE ExampleTests"
-               ReferencedContainer = "container:BLE Example.xcodeproj">
+               BuildableName = "RedTag.xctest"
+               BlueprintName = "RedTagTests"
+               ReferencedContainer = "container:RedTag.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5BB8695B1BF44CCB006F8DBE"
-               BuildableName = "BLE ExampleUITests.xctest"
-               BlueprintName = "BLE ExampleUITests"
-               ReferencedContainer = "container:BLE Example.xcodeproj">
+               BuildableName = "RedTag.xctest"
+               BlueprintName = "RedTagUITests"
+               ReferencedContainer = "container:RedTag.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BB8693C1BF44CCB006F8DBE"
-            BuildableName = "BLE Example.app"
-            BlueprintName = "BLE Example"
-            ReferencedContainer = "container:BLE Example.xcodeproj">
+            BuildableName = "RedTag.app"
+            BlueprintName = "RedTag"
+            ReferencedContainer = "container:RedTag.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BB8693C1BF44CCB006F8DBE"
-            BuildableName = "BLE Example.app"
-            BlueprintName = "BLE Example"
-            ReferencedContainer = "container:BLE Example.xcodeproj">
+            BuildableName = "RedTag.app"
+            BlueprintName = "RedTag"
+            ReferencedContainer = "container:RedTag.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BB8693C1BF44CCB006F8DBE"
-            BuildableName = "BLE Example.app"
-            BlueprintName = "BLE Example"
-            ReferencedContainer = "container:BLE Example.xcodeproj">
+            BuildableName = "RedTag.app"
+            BlueprintName = "RedTag"
+            ReferencedContainer = "container:RedTag.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
