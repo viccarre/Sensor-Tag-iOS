@@ -30,16 +30,20 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     let IRTemperatureDataUUID       = CBUUID(string: "F000AA01-0451-4000-B000-000000000000")
     let IRTemperatureConfigUUID     = CBUUID(string: "F000AA02-0451-4000-B000-000000000000")
 
-
     //Humidity UUIDs
     let HumidityServiceUUID         = CBUUID(string: "F000AA20-0451-4000-B000-000000000000")
     let HumidityDataUUID            = CBUUID(string: "F000AA21-0451-4000-B000-000000000000")
     let HumidityConfigUUID          = CBUUID(string: "F000AA22-0451-4000-B000-000000000000")
 
-    //Accelerometer UUIDs
+    //Motion UUIDs
     let MovementServiceUUID         = CBUUID(string: "F000AA80-0451-4000-B000-000000000000")
     let MovementDataUUID            = CBUUID(string: "F000AA81-0451-4000-B000-000000000000")
     let MovementConfigUUID          = CBUUID(string: "F000AA82-0451-4000-B000-000000000000")
+
+    //Ambient Light Sensor
+    let AmbientLightServiceUUID     = CBUUID(string: "F000AA70-0451-4000-B000-000000000000")
+    let AmbientLightDataUUID        = CBUUID(string: "F000AA71-0451-4000-B000-000000000000")
+    let AmbientLightConfigUUID      = CBUUID(string: "F000AA72-0451-4000-B000-000000000000")
 
 
     override func viewDidLoad() {
@@ -229,7 +233,12 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
                 peripheral.discoverCharacteristics(nil, forService: thisService)
             }
 
-            //print(thisService.UUID)
+            if service.UUID == AmbientLightServiceUUID{
+                peripheral.discoverCharacteristics(nil, forService: thisService)
+            }
+
+
+            print(thisService.UUID)
         }
     }
 
@@ -243,44 +252,44 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
         var enableValue = 1
         let enableBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
         print(enableBytes)
+        print(service.UUID)
         //check the UUID of each characteristic to find config and data characteristics
         for characteristics in service.characteristics!{
             let thisCharacteristic = characteristics as CBCharacteristic
-            //print(thisCharacteristic)
-            //check for data characteristic
+            print(thisCharacteristic)
+
             if thisCharacteristic.UUID == IRTemperatureDataUUID{
                 //Enable Sensor Notification
                 self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
                 //print(thisCharacteristic)
             }
-
-            //Check for config characteristic
             if thisCharacteristic.UUID == IRTemperatureConfigUUID{
                 //Enable Sensor
                 self.sensorTagPeripheral.writeValue(enableBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
-                //print(thisCharacteristic)
             }
 
-            //Check for data characteristic
             if thisCharacteristic.UUID == HumidityDataUUID{
                 self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
-                //print(thisCharacteristic)
             }
             if thisCharacteristic.UUID == HumidityConfigUUID{
                 //Enable Humidity Sensor
                 self.sensorTagPeripheral.writeValue(enableBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
-                //print(thisCharacteristic)
             }
 
-            //Check Accelerometer characteristic
             if thisCharacteristic.UUID == MovementDataUUID{
                 self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
-                //print(thisCharacteristic)
             }
             if thisCharacteristic.UUID == MovementConfigUUID{
 
                 //Enble Accelerometer
-                var enableMove = 38
+                /*
+                enable Accelerometer Mask = 0x0038, 56 decimal
+                enable Gyroscope Mask = 0x0007, 7 decimal
+                enable Magnetometer Mask = 0x0040, 64 decimal
+                
+                enable all Movement Sensors = 0x007F, 127 decimal
+                */
+                var enableMove = 64
                 let enableBytesMove = NSData(bytes: &enableMove, length: sizeof(UInt16))
                 print(enableBytesMove)
 
@@ -289,6 +298,12 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             }
 
+            if thisCharacteristic.UUID == AmbientLightDataUUID{
+                self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+            }
+            if thisCharacteristic.UUID == AmbientLightConfigUUID{
+                self.sensorTagPeripheral.writeValue(enableBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+            }
 
         }
 
@@ -317,6 +332,8 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             // Display on the temp label
             ambientTemperatureLabel.text = NSString(format: "%.2f", ambientTemperature) as String
+
+            //print(dataArray)
         }
 
         if characteristic.UUID == HumidityDataUUID{
@@ -349,11 +366,30 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
             dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
 
-            xAxisLabel.text = NSString(format: "%.0f", Double(dataArray[0])) as String
-            yAxisLabel.text = NSString(format: "%.0f", Double(dataArray[1])) as String
-            zAxisLabel.text = NSString(format: "%.0f", Double(dataArray[3])) as String
+            //print(dataArray)
+
+            //Gyroscope: 0, 1, 2
+
+            //Accelerometer: 3, 4, 5
+            xAxisLabel.text = NSString(format: "%.0f", Double(dataArray[3])) as String
+            yAxisLabel.text = NSString(format: "%.0f", Double(dataArray[4])) as String
+            zAxisLabel.text = NSString(format: "%.0f", Double(dataArray[5])) as String
+
+            //Magnetometer: 6, 7, 8
 
         }
+
+        if characteristic.UUID == AmbientLightDataUUID{
+
+            let dataBytes = characteristic.value
+            let dataLenght = dataBytes!.length
+            var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
+
+            //print(dataArray)
+            
+        }
+
     }
     
     
