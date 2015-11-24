@@ -17,9 +17,21 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     var ambientTemperatureLabel: UILabel!
     var humidityLabel: UILabel!
     var temperatureLabel: UILabel!
+
+    //Accelerometer Labels
     var xAxisLabel: UILabel!
     var yAxisLabel: UILabel!
     var zAxisLabel: UILabel!
+
+    //Gyroscope Labels
+    var xAxisGyroLabel: UILabel!
+    var yAxisGyroLabel: UILabel!
+    var zAxisGyroLabel: UILabel!
+
+    //Magnetometer Labels
+    var xAxisMagnetometerLabel: UILabel!
+    var yAxisMagnetometerLabel: UILabel!
+    var zAxisMagnetometerLabel: UILabel!
 
     // BLE
     var centralManager : CBCentralManager!
@@ -91,7 +103,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
 
 
@@ -137,26 +149,88 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
         if(indexPath.row == 3){
 
+            let title: UILabel! = UILabel()
+            title.text = "Accelerometer"
+            title.sizeToFit()
+            title.center = CGPoint(x: 70, y: 20)
+            cell.addSubview(title)
+
             xAxisLabel = UILabel()
             xAxisLabel.text = "00000"
             xAxisLabel.sizeToFit()
-            xAxisLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
+            xAxisLabel.center = CGPoint(x: self.view.frame.origin.x + 40, y: 50)
             cell.addSubview(xAxisLabel)
 
             yAxisLabel = UILabel()
             yAxisLabel.text = "00000"
             yAxisLabel.sizeToFit()
-            yAxisLabel.center = CGPoint(x: self.view.frame.width-90, y: cell.frame.height/2)
+            yAxisLabel.center = CGPoint(x: self.view.frame.midX, y: 50)
             cell.addSubview(yAxisLabel)
 
 
             zAxisLabel = UILabel()
             zAxisLabel.text = "00000"
             zAxisLabel.sizeToFit()
-            zAxisLabel.center = CGPoint(x: self.view.frame.width-150, y: cell.frame.height/2)
+            zAxisLabel.center = CGPoint(x: self.view.frame.width - 40, y: 50)
             cell.addSubview(zAxisLabel)
+            
+        }
 
-            cell.textLabel?.text = "Accelerometer"
+        if(indexPath.row == 4){
+
+            let title: UILabel! = UILabel()
+            title.text = "Gyroscope"
+            title.sizeToFit()
+            title.center = CGPoint(x: 70, y: 20)
+            cell.addSubview(title)
+
+            xAxisGyroLabel = UILabel()
+            xAxisGyroLabel.text = "00000"
+            xAxisGyroLabel.sizeToFit()
+            xAxisGyroLabel.center = CGPoint(x: self.view.frame.origin.x + 40, y: 50)
+            cell.addSubview(xAxisGyroLabel)
+
+            yAxisGyroLabel = UILabel()
+            yAxisGyroLabel.text = "00000"
+            yAxisGyroLabel.sizeToFit()
+            yAxisGyroLabel.center = CGPoint(x: self.view.frame.midX, y: 50)
+            cell.addSubview(yAxisGyroLabel)
+
+
+            zAxisGyroLabel = UILabel()
+            zAxisGyroLabel.text = "00000"
+            zAxisGyroLabel.sizeToFit()
+            zAxisGyroLabel.center = CGPoint(x: self.view.frame.width - 40, y: 50)
+            cell.addSubview(zAxisGyroLabel)
+            
+        }
+
+        if(indexPath.row == 5){
+
+            let title: UILabel! = UILabel()
+            title.text = "Magnetometer"
+            title.sizeToFit()
+            title.center = CGPoint(x: 70, y: 20)
+            cell.addSubview(title)
+
+            xAxisMagnetometerLabel = UILabel()
+            xAxisMagnetometerLabel.text = "00000"
+            xAxisMagnetometerLabel.sizeToFit()
+            xAxisMagnetometerLabel.center = CGPoint(x: self.view.frame.origin.x + 40, y: 50)
+            cell.addSubview(xAxisMagnetometerLabel)
+
+            yAxisMagnetometerLabel = UILabel()
+            yAxisMagnetometerLabel.text = "00000"
+            yAxisMagnetometerLabel.sizeToFit()
+            yAxisMagnetometerLabel.center = CGPoint(x: self.view.frame.midX, y: 50)
+            cell.addSubview(yAxisMagnetometerLabel)
+
+
+            zAxisMagnetometerLabel = UILabel()
+            zAxisMagnetometerLabel.text = "00000"
+            zAxisMagnetometerLabel.sizeToFit()
+            zAxisMagnetometerLabel.center = CGPoint(x: self.view.frame.width - 40, y: 50)
+            cell.addSubview(zAxisMagnetometerLabel)
             
         }
 
@@ -164,6 +238,14 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
         return cell
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+        if indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5{
+            return 70
+        }
+
+        return 44
+    }
 
     //Check status of BLE Hardware
     func centralManagerDidUpdateState(central: CBCentralManager) {
@@ -289,7 +371,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
                 
                 enable all Movement Sensors = 0x007F, 127 decimal
                 */
-                var enableMove = 64
+                var enableMove = 127
                 let enableBytesMove = NSData(bytes: &enableMove, length: sizeof(UInt16))
                 print(enableBytesMove)
 
@@ -369,6 +451,9 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             //print(dataArray)
 
             //Gyroscope: 0, 1, 2
+            xAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[0])) as String
+            yAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[1])) as String
+            zAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[2])) as String
 
             //Accelerometer: 3, 4, 5
             xAxisLabel.text = NSString(format: "%.0f", Double(dataArray[3])) as String
@@ -376,6 +461,9 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             zAxisLabel.text = NSString(format: "%.0f", Double(dataArray[5])) as String
 
             //Magnetometer: 6, 7, 8
+            xAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[6])) as String
+            yAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[7])) as String
+            zAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[8])) as String
 
         }
 
