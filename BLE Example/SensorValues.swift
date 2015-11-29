@@ -57,6 +57,16 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     let AmbientLightDataUUID        = CBUUID(string: "F000AA71-0451-4000-B000-000000000000")
     let AmbientLightConfigUUID      = CBUUID(string: "F000AA72-0451-4000-B000-000000000000")
 
+    //Simple Key
+    let SimpleKeyServiceUUID        = CBUUID(string: "FFE0")
+    let SimpleKeyDataUUID           = CBUUID(string: "FFE1")
+
+    //I/O Service
+    let IOServiceUUID               = CBUUID(string: "F000AA64-0451-4000-B000-000000000000")
+    let IODataUUID                  = CBUUID(string: "F000AA65-0451-4000-B000-000000000000")
+    let IOConfigUUID                = CBUUID(string: "F000AA66-0451-4000-B000-000000000000")
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +129,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             temperatureLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
             cell.addSubview(temperatureLabel)
-            cell.textLabel?.text = "Temperature Sensor"
+            cell.textLabel?.text = "🌡 Temperature Sensor"
             
         }
 
@@ -131,7 +141,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             humidityLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
             cell.addSubview(humidityLabel)
-            cell.textLabel?.text = "Humidity Sensor"
+            cell.textLabel?.text = "💧 Humidity Sensor"
             
         }
 
@@ -143,7 +153,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             ambientTemperatureLabel.center = CGPoint(x: self.view.frame.width-40, y: cell.frame.height/2)
             cell.addSubview(ambientTemperatureLabel)
-            cell.textLabel?.text = "IR Temperature Sensor"
+            cell.textLabel?.text = "☀️ IR Temperature Sensor"
 
         }
 
@@ -263,13 +273,26 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
         }
     }
 
+
     //Check out the discovered peripherals to find sensor Tag
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
 
         let deviceName = "CC2650 SensorTag"
         let nameOfDeviceFound = (advertisementData as NSDictionary).objectForKey(CBAdvertisementDataLocalNameKey) as? NSString
+        print((advertisementData as NSDictionary))
+        print((advertisementData as NSDictionary).objectForKey(CBAdvertisementDataManufacturerDataKey))
 
-        print(nameOfDeviceFound)
+
+        if (advertisementData as NSDictionary).objectForKey(CBAdvertisementDataManufacturerDataKey) != nil{
+
+            let newData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? NSDictionary
+            if newData != nil {
+
+                print(newData?.objectForKey("id"))
+            }
+
+        }
+
 
         if(nameOfDeviceFound == deviceName){
             //Update Status Label
@@ -318,8 +341,12 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             if service.UUID == AmbientLightServiceUUID{
                 peripheral.discoverCharacteristics(nil, forService: thisService)
             }
-
-
+            if service.UUID == SimpleKeyServiceUUID{
+                peripheral.discoverCharacteristics(nil, forService: thisService)
+            }
+            if service.UUID == IOServiceUUID{
+                peripheral.discoverCharacteristics(nil, forService: thisService)
+            }
             print(thisService.UUID)
         }
     }
@@ -333,12 +360,12 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
         //0x01 data byte to enable sensor
         var enableValue = 1
         let enableBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
-        print(enableBytes)
-        print(service.UUID)
+        //print(service)
+
         //check the UUID of each characteristic to find config and data characteristics
         for characteristics in service.characteristics!{
             let thisCharacteristic = characteristics as CBCharacteristic
-            print(thisCharacteristic)
+            //print(thisCharacteristic)
 
             if thisCharacteristic.UUID == IRTemperatureDataUUID{
                 //Enable Sensor Notification
@@ -373,10 +400,9 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
                 */
                 var enableMove = 127
                 let enableBytesMove = NSData(bytes: &enableMove, length: sizeof(UInt16))
-                print(enableBytesMove)
 
                 self.sensorTagPeripheral.writeValue(enableBytesMove, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
-                print(sensorTagPeripheral)
+
 
             }
 
@@ -385,6 +411,24 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             }
             if thisCharacteristic.UUID == AmbientLightConfigUUID{
                 self.sensorTagPeripheral.writeValue(enableBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+            }
+
+            if thisCharacteristic.UUID == SimpleKeyDataUUID{
+                self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+            }
+
+            if thisCharacteristic.UUID == IODataUUID{
+
+                var valueToWrite = 2
+                let writeValueIO = NSData(bytes: &valueToWrite, length: sizeof(UInt8))
+                self.sensorTagPeripheral.writeValue(writeValueIO, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+
+            }
+            if thisCharacteristic.UUID == IOConfigUUID{
+
+                var enableValueIO = 1
+                let enableBytesIO = NSData(bytes: &enableValueIO, length: sizeof(UInt8))
+                self.sensorTagPeripheral.writeValue(enableBytesIO, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
             }
 
         }
@@ -396,7 +440,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
         self.statusLabel.text = "Connected 😉"
 
-        //print(characteristic.UUID)
+
 
         if characteristic.UUID == IRTemperatureDataUUID {
             // Convert NSData to array of signed 16 bit values
@@ -445,25 +489,25 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             let dataBytes = characteristic.value
             let dataLenght = dataBytes!.length
-            var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
-            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
+            var dataArray = [Int16](count: dataLenght, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(Int16))
 
             //print(dataArray)
 
             //Gyroscope: 0, 1, 2
-            xAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[0])) as String
-            yAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[1])) as String
-            zAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[2])) as String
+            xAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[0]) / (65536.0 / 500.0)) as String
+            yAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[1]) / (65536.0 / 500.0)) as String
+            zAxisGyroLabel.text = NSString(format: "%.0f", Double(dataArray[2]) / (65536.0 / 500.0)) as String
 
             //Accelerometer: 3, 4, 5
-            xAxisLabel.text = NSString(format: "%.0f", Double(dataArray[3])) as String
-            yAxisLabel.text = NSString(format: "%.0f", Double(dataArray[4])) as String
-            zAxisLabel.text = NSString(format: "%.0f", Double(dataArray[5])) as String
+            xAxisLabel.text = NSString(format: "%.3f", Double(dataArray[3]) * 2.0 / 32768.0) as String
+            yAxisLabel.text = NSString(format: "%.3f", Double(dataArray[4]) * 2.0 / 32768.0) as String
+            zAxisLabel.text = NSString(format: "%.3f", Double(dataArray[5]) * 2.0 / 32768.0) as String
 
             //Magnetometer: 6, 7, 8
-            xAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[6])) as String
-            yAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[7])) as String
-            zAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[8])) as String
+            xAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[6]) * 4912.0 / 32760.0) as String
+            yAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[7]) * 4912.0 / 32760.0) as String
+            zAxisMagnetometerLabel.text = NSString(format: "%.0f", Double(dataArray[8]) * 4912.0 / 32760.0) as String
 
         }
 
@@ -473,9 +517,30 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             let dataLenght = dataBytes!.length
             var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
             dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
-
-            //print(dataArray)
             
+        }
+
+        if characteristic.UUID == SimpleKeyDataUUID{
+
+
+            let dataBytes = characteristic.value
+            let dataLenght = dataBytes!.length
+            var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
+
+            if(dataArray[0] == 1){
+                print("button")
+
+            }
+            if(dataArray[0] == 2){
+                print("On/Off Button pressed")
+            }
+
+        }
+
+        if characteristic.UUID == IODataUUID{
+            print(characteristic)
+            print("data")
         }
 
     }
