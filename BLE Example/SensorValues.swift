@@ -33,6 +33,18 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     var yAxisMagnetometerLabel: UILabel!
     var zAxisMagnetometerLabel: UILabel!
 
+    //Simple Keys Labels
+    var buttonOnOff: UILabel!
+    var buttonOne: UILabel!
+
+    //Digital Buttons to I/O service
+    var grenLED: UIButton!
+    var redLED: UIButton!
+    var buzzer: UIButton!
+
+    //IOCharacteristic
+    var IOCharacteristic: CBCharacteristic!
+
     // BLE
     var centralManager : CBCentralManager!
     var sensorTagPeripheral : CBPeripheral!
@@ -113,7 +125,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 8
     }
 
 
@@ -244,14 +256,108 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             
         }
 
+        if indexPath.row == 6{
+
+
+            let title: UILabel! = UILabel()
+            title.center = CGPoint(x: 20, y: 20)
+            title.text = "Simple Keys Service"
+            title.sizeToFit()
+            cell.addSubview(title)
+
+            buttonOnOff = UILabel()
+            buttonOnOff.center = CGPoint(x: 20, y: 50)
+            buttonOnOff.text = "Button On/Off: not pressed"
+            buttonOnOff.sizeToFit()
+            cell.addSubview(buttonOnOff)
+
+            buttonOne = UILabel()
+            buttonOne.center = CGPoint(x: 20, y: 80)
+            buttonOne.text = "Button One: not pressed"
+            buttonOne.sizeToFit()
+            cell.addSubview(buttonOne)
+        }
+
+        if indexPath.row == 7{
+
+            redLED = UIButton()
+            redLED.center = CGPoint(x: 20, y: 10)
+            redLED.setTitle("Red LED", forState: UIControlState.Normal)
+            redLED.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            redLED.setTitleColor(UIColor.greenColor (), forState: UIControlState.Highlighted)
+            redLED.addTarget(self, action: "redLedPressed", forControlEvents: UIControlEvents.TouchDown)
+            redLED.addTarget(self, action: "buttonReleased", forControlEvents: UIControlEvents.TouchUpInside)
+            redLED.sizeToFit()
+            cell.addSubview(redLED)
+
+            grenLED = UIButton()
+            grenLED.center = CGPoint(x: 20, y: 40)
+            grenLED.setTitle("Green LED", forState: UIControlState.Normal)
+            grenLED.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            grenLED.setTitleColor(UIColor.greenColor(), forState: UIControlState.Highlighted)
+            grenLED.addTarget(self, action: "greenLedPressed", forControlEvents: UIControlEvents.TouchDown)
+            grenLED.addTarget(self, action: "buttonReleased", forControlEvents: UIControlEvents.TouchUpInside)
+            grenLED.sizeToFit()
+            cell.addSubview(grenLED)
+
+            buzzer = UIButton()
+            buzzer.center = CGPoint(x: 20, y: 70)
+            buzzer.setTitle("Buzzer", forState: UIControlState.Normal)
+            buzzer.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            buzzer.setTitleColor(UIColor.greenColor(), forState: UIControlState.Highlighted)
+            buzzer.addTarget(self, action: "buzzerPressed", forControlEvents: UIControlEvents.TouchDown )
+            buzzer.addTarget(self, action: "buttonReleased", forControlEvents: UIControlEvents.TouchUpInside)
+            buzzer.sizeToFit()
+            cell.addSubview(buzzer)
+        }
+
 
         return cell
     }
 
+    func redLedPressed(){
+        
+        if IOCharacteristic != nil{
+            var valueToWrite = 1
+            let writeValueIO = NSData(bytes: &valueToWrite, length: sizeof(UInt8))
+            self.sensorTagPeripheral.writeValue(writeValueIO, forCharacteristic: IOCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+        }
+    }
+
+    func greenLedPressed(){
+
+        if IOCharacteristic != nil{
+            var valueToWrite = 2
+            let writeValueIO = NSData(bytes: &valueToWrite, length: sizeof(UInt8))
+            self.sensorTagPeripheral.writeValue(writeValueIO, forCharacteristic: IOCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+        }
+    }
+
+    func buzzerPressed(){
+
+        if IOCharacteristic != nil{
+            var valueToWrite = 4
+            let writeValueIO = NSData(bytes: &valueToWrite, length: sizeof(UInt8))
+            self.sensorTagPeripheral.writeValue(writeValueIO, forCharacteristic: IOCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+        }
+    }
+
+    func buttonReleased(){
+
+        if IOCharacteristic != nil{
+            var valueToWrite = 0
+            let writeValueIO = NSData(bytes: &valueToWrite, length: sizeof(UInt8))
+            self.sensorTagPeripheral.writeValue(writeValueIO, forCharacteristic: IOCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+        }
+    }
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-        if indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5{
+        if indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 {
             return 70
+        }
+        if indexPath.row == 6 || indexPath.row == 7 {
+            return 110
         }
 
         return 44
@@ -364,6 +470,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
         //check the UUID of each characteristic to find config and data characteristics
         for characteristics in service.characteristics!{
+
             let thisCharacteristic = characteristics as CBCharacteristic
             //print(thisCharacteristic)
 
@@ -400,9 +507,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
                 */
                 var enableMove = 127
                 let enableBytesMove = NSData(bytes: &enableMove, length: sizeof(UInt16))
-
                 self.sensorTagPeripheral.writeValue(enableBytesMove, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
-
 
             }
 
@@ -419,9 +524,11 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
 
             if thisCharacteristic.UUID == IODataUUID{
 
-                var valueToWrite = 2
+                var valueToWrite = 0
                 let writeValueIO = NSData(bytes: &valueToWrite, length: sizeof(UInt8))
                 self.sensorTagPeripheral.writeValue(writeValueIO, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+
+                IOCharacteristic = thisCharacteristic
 
             }
             if thisCharacteristic.UUID == IOConfigUUID{
@@ -528,19 +635,30 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
             var dataArray = [UInt16](count: dataLenght, repeatedValue: 0)
             dataBytes!.getBytes(&dataArray, length: dataLenght * sizeof(UInt16))
 
+            if(dataArray[0] == 0){
+                buttonOne.textColor = UIColor.blackColor()
+                buttonOnOff.textColor = UIColor.blackColor()
+                buttonOne.text = "Button One: not pressed"
+                buttonOnOff.text = "Button On/Off: not pressed"
+
+            }
             if(dataArray[0] == 1){
-                print("button")
+                buttonOne.textColor = UIColor.redColor()
+                buttonOne.text = "Button One: pressed"
 
             }
             if(dataArray[0] == 2){
-                print("On/Off Button pressed")
+                //print("On/Off Button pressed")
+                buttonOnOff.textColor = UIColor.redColor()
+                buttonOnOff.text = "Button On/Off: pressed"
+            }
+            if(dataArray[0] == 3){
+                buttonOne.textColor = UIColor.redColor()
+                buttonOnOff.textColor = UIColor.redColor()
+                buttonOnOff.text = "Button On/Off: pressed"
+                buttonOnOff.text = "Button On/Off: pressed"
             }
 
-        }
-
-        if characteristic.UUID == IODataUUID{
-            print(characteristic)
-            print("data")
         }
 
     }
