@@ -646,11 +646,27 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
                 buttonOne.textColor = UIColor.redColor()
                 buttonOne.text = "Button One: pressed"
 
+                //Send local notification if app goes to background mode
+                let notification = UILocalNotification()
+                notification.fireDate = NSDate().dateByAddingTimeInterval(0.0)
+                notification.timeZone = NSTimeZone.defaultTimeZone()
+                notification.alertBody = "Button One pressed"
+                notification.soundName =  UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
             }
             if(dataArray[0] == 2){
                 //print("On/Off Button pressed")
                 buttonOnOff.textColor = UIColor.redColor()
                 buttonOnOff.text = "Button On/Off: pressed"
+
+                //Send local notification if app goes to background mode
+                let notification = UILocalNotification()
+                notification.fireDate = NSDate().dateByAddingTimeInterval(0.0)
+                notification.timeZone = NSTimeZone.defaultTimeZone()
+                notification.alertBody = "Button On/Off pressed"
+                notification.soundName =  UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
             if(dataArray[0] == 3){
                 buttonOne.textColor = UIColor.redColor()
@@ -667,6 +683,7 @@ class SensorValues: UITableViewController, CBCentralManagerDelegate, CBPeriphera
     // If disconnected, start searching again
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         self.statusLabel.text = "Disconnected"
+        print("Disconnected")
         central.scanForPeripheralsWithServices(nil, options: nil)
     }
 
